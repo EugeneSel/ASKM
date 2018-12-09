@@ -22,8 +22,7 @@ def artificial_basis(simplex_table, m, n):
                 f_min = simplex_table[i + 1, j_gen]
                 i_gen = i + 1
 
-        general_element = simplex_table[i_gen, j_gen]
-        simplex_table[i_gen, j_gen] = 1/general_element
+        simplex_table[i_gen, j_gen] = 1 / simplex_table[i_gen, j_gen]
 
         for i in range(m + n + 2):
             if i != i_gen:
@@ -119,8 +118,7 @@ def default_simplex(simplex_table, m, n, X):
                 f_min = simplex_table[i + 1, j_gen]
                 i_gen = i + 1
 
-        general_element = simplex_table[i_gen, j_gen]
-        simplex_table[i_gen, j_gen] = 1 / general_element
+        simplex_table[i_gen, j_gen] = 1 / simplex_table[i_gen, j_gen]
 
         for i in range(obj_func_num + 1):
             if i != i_gen:

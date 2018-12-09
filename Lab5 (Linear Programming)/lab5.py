@@ -65,7 +65,7 @@ simplex_table = np.append(simplex_table, [artificial_function], axis=0)
 
 print(simplex_table)
 
-simplex_table, X = artificial_basis(simplex_table, m, n,)
+simplex_table, X = artificial_basis(simplex_table, m, n)
 simplex_table, X = default_simplex(simplex_table, m, n, X)
 
 for i in range(m * n):
