@@ -1,3 +1,5 @@
+import scipy
+
 import numpy as np
 
 # y = a * (1 - e ^ (b * x)) + c
@@ -21,17 +23,12 @@ def exponential_regression(y, x, n):
         f_avg += f[i]
         fx_avg += f[i] * x_der[i]
         x2_avg += x_der[i] ** 2
-    print(y_der, x_der, f, x_avg, f_avg, fx_avg, x2_avg)
 
     b = ((n - 1) * fx_avg - f_avg * x_avg) / ((n - 1) * x2_avg - x_avg ** 2)
     a = (f_avg - b * x_avg) / (n - 1)
     B = -b
     A = np.exp(a) / B
+    C = sum(y - A * (1 - np.exp(-B * x))) / n
 
-    y_avg = 0
-    for i in range(n):
-        y_avg += y[i] - A * (1 - np.exp(-B * x[i]))
-
-    C = y_avg / n
-
-    return A, B, C
+    error = np.linalg.norm(y - (A * (1 - np.exp(-B * x)) + C)) / np.linalg.norm(y)
+    return A, B, C, error

@@ -2,7 +2,7 @@ import numpy as np
 import cust_input
 import random
 from exponential_regression_method import exponential_regression
-import readchar
+import matplotlib.pyplot as plt
 
 n = cust_input.int_input(2, 100, "Enter the number of function and variable values (from 2 to 100): \n")
 x = np.zeros(n)
@@ -45,5 +45,11 @@ elif key == '2':
 print("x: ", x)
 print("f(x): ", y)
 
-A, B, C = exponential_regression(y, x, n)
-print("f(x) = %f * (1 - e ^ (%f * x)) + %f" %(A, B, C))
+A, B, C, error = exponential_regression(y, x, n)
+print("f(x) = %f * (1 - e ^ (-%f * x)) + %f" %(A, B, C))
+print("Error: ", error)
+
+xf = np.linspace(min(x), max(x), 1000)
+plt.plot(xf, A * (1 - np.exp(-B * xf)) + C)
+plt.scatter(x, y, color='red')
+plt.show()
