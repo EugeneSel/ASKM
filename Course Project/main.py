@@ -126,7 +126,10 @@ def solution():
         else:
             conclusion.config(text="Вплив a0 та a1 незначний")
 
-    plt.scatter(y, sse, marker='o', color='blue')
+    x = np.arange(min(y) - 1, max(y) + 1)
+    z = a0 + a1 / x
+    plt.scatter(y, sse, marker='o', color='red')
+    plt.plot(x, z, color='blue')
     plt.grid()
     plt.xlabel("Обсяг виробництва")
     plt.ylabel("Собівартість")
